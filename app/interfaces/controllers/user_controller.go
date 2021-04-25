@@ -26,12 +26,12 @@ func NewUserController(sqlHandler database.SqlHandler) *UserController {
 func (controller *UserController) Create(c Context) {
 	u := domain.User{}
 	c.Bind(&u)
-	err := controller.Interactor.Add(u)
+	user, err := controller.Interactor.Add(u)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err)
 		return
 	}
-	c.JSON(http.StatusCreated, u)
+	c.JSON(http.StatusCreated, user)
 }
 
 // ContextをginのContextに変えてんでー

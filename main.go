@@ -1,22 +1,10 @@
 package main
 
 import (
-	"app/app/infrastructure"
 	"fmt"
 )
 
 func main() {
-	sqlHandler := infrastructure.NewSqlHandler()
-	sqlHandler.Execute("aa")
-	// a, err :=database.SqlHandler.Execute("aaaa", domain.User)
-	// a := infrastructure.NewSqlHandler()
-	// cmd := `CREATE TABLE IF NOT EXISTS persons(
-	// 			name INT,
-	// 			age  INT)`
-	// _, err := a.Conn.Exec(cmd)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
 	bob := new(Person)
 	mike := new(Person2)
 
