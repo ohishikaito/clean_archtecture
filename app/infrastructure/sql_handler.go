@@ -40,7 +40,7 @@ func (handler *SqlHandler) Query(statement string, args ...interface{}) (databas
 	}
 	row := new(SqlRow)
 	row.Rows = rows
-	return rows, nil
+	return row, nil
 }
 
 type SqlResult struct {
