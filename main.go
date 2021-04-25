@@ -1,8 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"app/app/infrastructure"
+	"fmt"
+)
 
 func main() {
+	sqlHandler := infrastructure.NewSqlHandler()
+	sqlHandler.Execute("aa")
+	// a, err :=database.SqlHandler.Execute("aaaa", domain.User)
 	// a := infrastructure.NewSqlHandler()
 	// cmd := `CREATE TABLE IF NOT EXISTS persons(
 	// 			name INT,
@@ -16,6 +22,9 @@ func main() {
 
 	IntroForPerson(bob)  //=> Hello World
 	IntroForPerson(mike) //=> Hello World
+
+	pochi := new(Dog)
+	NakuForAnimail(pochi)
 }
 
 type Person struct{}  //Person構造体
@@ -37,4 +46,18 @@ func (p *Person) intro() {
 //Person2構造体のメソッドintro()
 func (p *Person2) intro() {
 	fmt.Println("Hello World")
+}
+
+type Dog struct{}
+
+func (d *Dog) naku() {
+	fmt.Println("wan!")
+}
+
+type Animal interface {
+	naku()
+}
+
+func NakuForAnimail(arg Animal) {
+	// arg.naku()
 }
