@@ -1,51 +1,67 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
+
+type Human interface {
+	Say() string
+}
+
+type Person struct {
+	Name string
+}
+
+func (p *Person) Say() string {
+	fmt.Println("say")
+	return "say"
+}
 
 func main() {
-	bob := new(Person)
-	mike := new(Person2)
-
-	IntroForPerson(bob)  //=> Hello World
-	IntroForPerson(mike) //=> Hello World
-
-	pochi := new(Dog)
-	NakuForAnimail(pochi)
+	var mike Human = &Person{Name: "ss"}
+	mike.Say()
 }
 
-type Person struct{}  //Person構造体
-type Person2 struct{} //Person2構造体
+// func main() {
+// 	bob := new(Person)
+// 	mike := new(Person2)
 
-type People interface {
-	intro()
-}
+// 	IntroForPerson(bob)  //=> Hello World
+// 	IntroForPerson(mike) //=> Hello World
 
-func IntroForPerson(arg People) {
-	arg.intro()
-}
+// 	pochi := new(Dog)
+// 	NakuForAnimail(pochi)
+// }
 
-//Person構造体のメソッドintro()
-func (p *Person) intro() {
-	fmt.Println("Hello World")
-}
+// type Person struct{}  //Person構造体
+// type Person2 struct{} //Person2構造体
 
-//Person2構造体のメソッドintro()
-func (p *Person2) intro() {
-	fmt.Println("Hello World")
-}
+// type People interface {
+// 	intro()
+// }
 
-type Dog struct{}
+// func IntroForPerson(arg People) {
+// 	arg.intro()
+// }
 
-func (d *Dog) naku() {
-	fmt.Println("wan!")
-}
+// //Person構造体のメソッドintro()
+// func (p *Person) intro() {
+// 	fmt.Println("Hello World")
+// }
 
-type Animal interface {
-	naku()
-}
+// //Person2構造体のメソッドintro()
+// func (p *Person2) intro() {
+// 	fmt.Println("Hello World")
+// }
 
-func NakuForAnimail(arg Animal) {
-	// arg.naku()
-}
+// type Dog struct{}
+
+// func (d *Dog) naku() {
+// 	fmt.Println("wan!")
+// }
+
+// type Animal interface {
+// 	naku()
+// }
+
+// func NakuForAnimail(arg Animal) {
+// 	arg.naku()
+// }

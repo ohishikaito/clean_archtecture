@@ -21,6 +21,9 @@ func init() {
 	router.GET("/users/:id", func(c *gin.Context) {
 		userController.Show(c)
 	})
+	router.DELETE("/users/:id", func(c *gin.Context) {
+		userController.Delete(c)
+	})
 
 	Router = router
 }

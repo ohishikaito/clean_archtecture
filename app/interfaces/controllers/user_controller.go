@@ -34,7 +34,6 @@ func (controller *UserController) Create(c Context) {
 	c.JSON(http.StatusCreated, user)
 }
 
-// ContextをginのContextに変えてんでー
 func (controller *UserController) Index(c Context) {
 	users, err := controller.Interactor.Users()
 	if err != nil {
@@ -51,4 +50,14 @@ func (controller *UserController) Show(c Context) {
 		return
 	}
 	c.JSON(200, user)
+}
+
+func (controller *UserController) Delete(c Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	err := controller.Interactor.Remove(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err)
+		return
+	}
+	c.JSON(200, "deleted!")
 }

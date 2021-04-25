@@ -24,3 +24,8 @@ func (interactor *UserInteractor) UserById(identifier int) (user domain.User, er
 	user, err = interactor.UserRepository.FindById(identifier)
 	return
 }
+
+func (interactor *UserInteractor) Remove(ID int) error {
+	err := interactor.UserRepository.DeleteById(ID)
+	return err
+}
