@@ -1,6 +1,7 @@
 package infrastructure
 
 import (
+	"app/app/interfaces/database"
 	"database/sql"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -10,7 +11,7 @@ type SqlHandler struct {
 	Conn *sql.DB
 }
 
-func NewSqlHandler() *SqlHandler {
+func NewSqlHandler() database.SqlHandler {
 	// conn, err := sql.Open(config.SQLDriver, config.DatabaseURL)
 	// 一旦ローカルのDBに繋ぐ
 	conn, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/sample")
