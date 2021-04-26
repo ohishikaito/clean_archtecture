@@ -1,6 +1,9 @@
 package usecase
 
-import "app/app/domain"
+import (
+	"app/app/domain"
+	"fmt"
+)
 
 type UserInteractor struct {
 	UserRepository UserRepository
@@ -28,4 +31,14 @@ func (interactor *UserInteractor) UserById(identifier int) (user domain.User, er
 func (interactor *UserInteractor) Remove(ID int) error {
 	err := interactor.UserRepository.DeleteById(ID)
 	return err
+}
+
+func (interactor *UserInteractor) UpdateUser(user domain.User) (domain.User, error) {
+	user, err := interactor.UserRepository.Update(user)
+	if err != nil {
+		fmt.Println(err)
+		fmt.Println("UpdateUser error")
+		return domain.User{}, err
+	}
+	return user, nil
 }

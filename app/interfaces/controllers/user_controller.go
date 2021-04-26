@@ -61,3 +61,14 @@ func (controller *UserController) Delete(c Context) {
 	}
 	c.JSON(200, "deleted!")
 }
+
+func (controller *UserController) Update(c Context) {
+	requestData := domain.User{}
+	c.BindJSON(&requestData)
+	user, err := controller.Interactor.UpdateUser(requestData)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err)
+		return
+	}
+	c.JSON(200, user)
+}

@@ -24,6 +24,9 @@ func init() {
 	router.DELETE("/users/:id", func(c *gin.Context) {
 		userController.Delete(c)
 	})
+	router.PUT("/users/:id", func(c *gin.Context) {
+		userController.Update(c)
+	})
 
 	Router = router
 }

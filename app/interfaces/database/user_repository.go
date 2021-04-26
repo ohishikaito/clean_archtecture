@@ -1,6 +1,9 @@
 package database
 
-import "app/app/domain"
+import (
+	"app/app/domain"
+	"fmt"
+)
 
 type UserRepository struct {
 	SqlHandler
@@ -46,6 +49,7 @@ func (repo *UserRepository) FindAll() (users domain.Users, err error) {
 
 func (repo *UserRepository) FindById(identifier int) (user domain.User, err error) {
 	row, err := repo.Query("SELECT id, first_name, last_name FROM users WHERE id = ?", identifier)
+	fmt.Println(row)
 	defer row.Close()
 	if err != nil {
 		return
@@ -70,4 +74,16 @@ func (repo *UserRepository) DeleteById(ID int) error {
 		return err
 	}
 	return nil
+}
+
+func (repo *UserRepository) Update(user domain.User) (domain.User, error) {
+	// SQL文を生で書け！
+	_, err := repo.Query("UPDATE users SET first_name = ?, last_name = ? WHERE id = ?", user.FirstName, user.LastName, user.ID)
+	if err != nil {
+		fmt.Println(err)
+		fmt.Println("Update error")
+		return domain.User{}, err
+	}
+	user.Build()
+	return user, nil
 }
